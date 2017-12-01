@@ -1,0 +1,19 @@
+<div>
+    <div class="header">
+        <a href="#!/">
+            <div class="back-page">
+                <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+            </div>
+        </a>
+        <div class="new-item">Create new item</div>
+    </div>
+    <div class="title">
+        <div>{{topic}}</div>
+        <div class="title-new-item">
+            <input type="text" id="text" placeholder="New item title..." style="border:0; outline: 0; background: transparent; border-bottom:1px solid #2b2f3e;" ng-model="topicTitle">
+        </div>
+        <div class="next-page" ng-click="addTopic(topicTitle)">
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        </div>
+    </div>
+</div>

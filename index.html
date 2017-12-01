@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Empeek</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
+</head>
+
+<body ng-controller="Controller">
+    <div ng-view></div>
+<!--
+    <div>
+        <div class="header">
+            <a href="#!/">
+                <div class="back-page">
+                    <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                </div>
+            </a>
+            <div class="new-item">Create new item</div>
+        </div>
+        <div class="title">
+            <div class="title-new-item">
+                <input type="text" id="text" placeholder="New item title..." style="border:0; outline: 0; background: transparent; border-bottom:1px solid #2b2f3e;">
+            </div>
+            <div class="next-page" ng-click="">
+                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="header">
+            <a href="#/!">
+                <div class="back-page" ng-click=""><i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                </div>
+            </a>
+            <div>First item{{item.title}}</div>
+        </div>
+        <div class="block">
+            <div class="comments" ng-repeat="">
+                <div class="picture">ghgghg</div>
+                <div class="comment-item">hhhjhjj{{item.comment}}</div>
+            </div>
+            <div class="new-comment">
+                <div>
+                    <input type="text" id="text" placeholder="New comment goes here..." autofocus>
+                </div>
+                <div class="next-page" ng-click="">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="header">
+            <div>
+                <h1>Sayer</h1>
+                <p>World's most used time waster</p>
+            </div>
+        </div>
+        <div class="title" ng-repeat="item in items">
+            <div ng-click="selectPost($index, item.id)">{{item.title}}</div>
+            <div class="count-comments" >{{item.comments.length}}</div>
+            <div class="delete" ng-click="">Delete</div>
+        </div>
+        <a href="#/!new">
+            <div class="add-new" ng-click="newPost()">
+                <i class="fa fa-plus" style="color:#f5a8f0" aria-hidden="true"></i>
+            </div>
+        </a>
+    </div>
+-->
+
+    <!--<script src="js/text.js"></script>-->
+    <script src="js/app.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/randomColor.js"></script>
+    <!--    </div>-->
+</body>
+
+</html>
