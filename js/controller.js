@@ -18,9 +18,10 @@ var app = angular.module('myApp');
         
         if (!loadFromLocalStorage()) {
             $scope.items = [{
+//                d long title
                 id:"1",
-                title:'First item with customized long title',
-                comments: [{text: "It is along established fact that a reader will be distracted by the readable content of a page when looking at its layot. The point of using Lorem Ipsum is that has a more-or-less normal distribution of letters? as opposed to using 'Content here, content Here', making it look like readable English.", color: "red"}, 
+                title:'First item with customize...',
+                comments: [{text: "It is along established fact that a reader will be distracted by the readable content of a page when looking at its layot. The point of using Lorem Ipsum is that it has a more-or-less normal distribu-tion of letters, as opposed to using 'Content here, content here', making it look like rea-dable English.", color: "red"}, 
                            {text: "It is along established fact that a reader will be distracted by the readable content of a page when looking at its layot.'", color: "green"}]
             },{
                 id: "2",
