@@ -16,11 +16,10 @@
             </div>
             <div class="new-comment">
                 <div class="new-comment-div">
-                    <input type="text" id="text" class="input-comment" placeholder="New comment goes here..." autofocus style="width:100%" ng-model="getNewComment">
+                    <input type="text" id="newComment" class="input-comment" placeholder="New comment goes here..." autofocus style="width:100%" ng-model="newComment">
                 </div>
-                <div class="next-page save-comment" class="input-comment" ng-click="addNewComment(items[selectedTopic].id, getNewComment)">
-                    >
-<!--                    <i class="fa fa-chevron-right" aria-hidden="true"></i> -->
+                <div class="next-page save-comment" class="input-comment" ng-click="addNewComment(items[selectedTopic].id, newComment)">
+                    &gt;
                 </div>
             </div>
     </div>

@@ -99,7 +99,7 @@ h1{
 }
 .count-comments,.next-page, .back-page, .save-comment{
     background-color: #313464;
-    width: 36px;
+    min-width: 36px;
     height: 36px;
     border-radius: 50%;
     color:white;
@@ -112,12 +112,14 @@ h1{
     font-size: 16px;
 }
 .delete{
-    background-color: #d4145a;
     color: white;
     cursor:pointer;
     font-size: 19px;
     font-weight: 400;
-    padding: 6%;
+    height: 50px;
+	width: 100px;
+    color: white;
+    position: relative;
 }
 .new-item{
     font-size: 19px;
@@ -269,3 +271,57 @@ a{
 ::-ms-input-placeholder { 
     font:18px Arial;
 }
+
+.flipBtn, .flipBtn_checkbox, .flipBtn_face{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.flipBtn {    
+  transition: transform 0.3s;  
+  transform-style: preserve-3d;  
+  pointer-events: none;
+/*  box-shadow: 0px 0px 4px #C7C7C7;*/
+}
+.flipBtnWrapper:hover >  .flipBtn{
+/*   box-shadow: 0px 0px 4px #828282;*/
+}
+.flipBtn_back{  
+  transform:  translateZ( -10px );
+}
+.flipBtn_front{
+  transform: translateZ( 10px );
+  backface-visibility: hidden;
+}
+.flipBtn_back, .flipBtn_front{
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.flipBtn_checkbox{
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Demo No 1 */
+
+.flipBtn_front.demo1{
+/*	background-image: url("image/css-3d-flip-button-animation-play.png"), linear-gradient(#FF6366 50%, #FEA56E);*/
+    background-color: #d4145a;
+}
+.flipBtn_back.demo1{
+/*	background-image:  url("image/css-3d-flip-button-animation-pause.png"), linear-gradient(#FF6366 50%, #FEA56E);*/
+    background-color: #313464;
+    transform: scaleY(-1);
+}
+.flipBtn_mid.demo1{
+  height: 20px;  
+	background-color: #d4145a;
+  transform: rotateX(90deg);
+  top: -10px;
+}
+.flipBtn_checkbox:checked + .flipBtn.demo1{
+  transform: rotateX( -180deg );
+}
+.text{
+  transform: scaleY(-1);
+    }

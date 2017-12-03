@@ -1,4 +1,4 @@
-var app = angular.module('myApp',["ngRoute"]);
+var app = angular.module('sayerApp',["ngRoute"]);
 app.config(function($routeProvider) {
     $routeProvider
         .when("/", {
@@ -9,9 +9,5 @@ app.config(function($routeProvider) {
         })
         .when("/comments", {
             templateUrl: "template/comments.html"
-//        })
-//       .when("/basket", {
-//            templateUrl: "basket.html",
-//            controller: "flowerController"
         });
 });
