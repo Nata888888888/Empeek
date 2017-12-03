@@ -18,11 +18,10 @@ var app = angular.module('myApp');
         
         if (!loadFromLocalStorage()) {
             $scope.items = [{
-//                d long title
                 id:"1",
-                title:'First item with customize...',
-                comments: [{text: "It is along established fact that a reader will be distracted by the readable content of a page when looking at its layot. The point of using Lorem Ipsum is that it has a more-or-less normal distribu-tion of letters, as opposed to using 'Content here, content here', making it look like rea-dable English.", color: "red"}, 
-                           {text: "It is along established fact that a reader will be distracted by the readable content of a page when looking at its layot.'", color: "green"}]
+                title:'First item with customized long title',
+                comments: [{text: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.", color: "red"}, 
+                           {text: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.", color: "green"}]
             },{
                 id: "2",
                 title: 'Second item',
@@ -41,13 +40,13 @@ var app = angular.module('myApp');
             //window.location = '#!/comments';
             $location.path('/comments')
         }
-        $scope.topicTitle='';
-        $scope.topic='';
+        $scope.topicTitle = '';
+        $scope.topic = '';
         
         $scope.addTopic = function(title){
             $scope.lastId++;
             $scope.topic = '';
-          if(title.length > 0){  
+          if(title.trim().length > 0){  
             var newTopic = {
                 id:$scope.lastId,
                 'title': title,
@@ -59,6 +58,7 @@ var app = angular.module('myApp');
             $scope.topicTitle = '';
             var inpt = document.getElementById('text');
             inpt.value = '';
+            $location.path('/');
           }   
         }
         
@@ -75,7 +75,7 @@ var app = angular.module('myApp');
         $scope.getNewComment = "";
         
         $scope.addNewComment = function(id,comment){
-            if(comment.length > 0){ 
+            if(comment.trim().length > 0){ 
                 let item = getPostById(id);
                 objComment = {text: comment, color: randomColor()};
                 item.comments.push(objComment);
@@ -89,6 +89,9 @@ var app = angular.module('myApp');
         $scope.deleteTopic = function(id){
             confirm('Are you sure? Do you want to delete this topic?');
             // TODO: delete from array here
+            let item = getPostById(id);
+            let itemIndex = $scope.items.indexOf(item);
+            $scope.items.splice(itemIndex, 1);
             saveToLocalStorage();
         }
         
