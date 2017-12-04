@@ -1,27 +1,25 @@
-   <div class="home-block">
-        <div class="header">
-            <div class="header-wraper">
-                <h1>Sayer</h1>
-                <p>World's most used time waster</p>
-            </div>
+<div class="home-block">
+    <div class="header">
+        <div class="header-wraper">
+            <h1>Sayer</h1>
+            <p>World's most used time waster</p>
         </div>
-        <div class="title" ng-repeat="item in items">
-            <div class="title-header" ng-click="showAddCommentPage($index, item.id)">{{item.title}}</div>
-            <div class="count-comments" ng-hide="item.comments.length == 0">{{item.comments.length}}</div>
-            <div class="delete" ng-hide="item.comments.length != 0">
-                    <input class="flipBtn_checkbox" type="checkbox" ng-model="tempTopic[item.id].deleteNotConfirmed"
-                        ng-click="deleteTopic(item.id, tempTopic[item.id].deleteNotConfirmed)"/>
-                    <div class="flipBtn demo1">
-                      <div class="flipBtn_face flipBtn_back demo1">Confirm</div>
-                      <div class="flipBtn_face flipBtn_mid demo1"></div>
-                      <div class="flipBtn_face flipBtn_front demo1">Delete</div>
-                    </div>
-            </div>
-        </div>
-        <a href="#!/new">
-            <div class="add-new">&#43;
-<!--                <i class="fa fa-plus" style="color:#f5a8f0" aria-hidden="true"></i>-->
-            </div>
-        </a>
     </div>
-    
+    <div class="title" ng-repeat="item in items" ng-click="showAddCommentPage($index, item.id, $event)">
+        <div class="title-header">{{item.title}}</div>
+        <div class="count-comments" ng-hide="item.comments.length == 0">{{item.comments.length}}</div>
+        <div name="btnDeleteTopic" class="delete" ng-hide="item.comments.length != 0">
+            <input class="flipBtn_checkbox" type="checkbox" ng-model="tempTopic[item.id].deleteNotConfirmed" ng-click="deleteTopic(item.id, tempTopic[item.id].deleteNotConfirmed)" />
+            <div class="flipBtn demo1">
+                <div class="flipBtn_face flipBtn_back demo1">Confirm</div>
+                <div class="flipBtn_face flipBtn_mid demo1"></div>
+                <div class="flipBtn_face flipBtn_front demo1">Delete</div>
+            </div>
+        </div>
+    </div>
+    <a href="#!/new">
+        <div class="add-new">&#43;
+            <!--                <i class="fa fa-plus" style="color:#f5a8f0" aria-hidden="true"></i>-->
+        </div>
+    </a>
+</div>

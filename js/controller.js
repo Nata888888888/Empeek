@@ -2,11 +2,24 @@ var app = angular.module('sayerApp');
 
 app.controller("Controller", sayerController).$inject = ["sayerModel"];
 
+function isDeleteButton(elem) {
+    if ($(elem).attr('name') == "btnDeleteTopic")
+        return true;
+    
+    if ($(elem.parentElement).attr("name") == "btnDeleteTopic")
+        return true;
+    
+    return false;
+}
+
 function sayerController($scope, $location, $timeout, sayerModel) {
     $scope.items = sayerModel.topics;
     $scope.tempTopic = [];
 
-    $scope.showAddCommentPage = function(index) {
+    $scope.showAddCommentPage = function(index, id, event) {
+        if (isDeleteButton(event.target))
+            return;
+
         $scope.selectedTopic = index;
         $location.path('/comments');
         $scope.new_comment_focus = true;
@@ -32,25 +45,25 @@ function sayerController($scope, $location, $timeout, sayerModel) {
 
     $scope.deleteTopic = function(id, deleteNotConfirmed) {
         if (deleteNotConfirmed) {
-            $timeout(function (){
+            $timeout(function() {
                 $scope.tempTopic[id].deleteNotConfirmed = false;
             }, 3000);
             return;
         }
-        
+
         sayerModel.deleteTopic(id);
     }
 }
 
 angular.module('sayerApp').run(function($rootScope, $timeout) {
-  // tell Angular to call this function when a route change completes
-  $rootScope.$on('$routeChangeSuccess', function() {
-    // we can't set focus at this point; the DOM isn't ready for us
-    // instead, we define a callback to be called after the $digest loop
-    $timeout(function(){
-      // once this is executed, our input should be focusable, so find (with jQuery)
-      // whatever is on the page with the autofocus attribute and focus it; fin.
-      $('[autofocus]').focus();
+    // tell Angular to call this function when a route change completes
+    $rootScope.$on('$routeChangeSuccess', function() {
+        // we can't set focus at this point; the DOM isn't ready for us
+        // instead, we define a callback to be called after the $digest loop
+        $timeout(function() {
+            // once this is executed, our input should be focusable, so find (with jQuery)
+            // whatever is on the page with the autofocus attribute and focus it; fin.
+            $('[autofocus]').focus();
+        });
     });
-  });
-}); 
+});
