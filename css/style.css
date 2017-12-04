@@ -46,7 +46,7 @@ body{
 }
 h1{
     font-size: 32px;
-    margin-top: 20px;
+    margin-top: 0;
     margin-bottom: 0;
 }
 .title{
@@ -69,6 +69,7 @@ h1{
     font-weight: 600;
     font-size: 18px;
     padding-left: 5%;
+    padding-right: 5%;
     white-space: nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -111,8 +112,10 @@ h1{
     cursor:pointer;
     font-size: 19px;
     font-weight: 400;
-    height: 50px;
-	min-width: 100px;
+/*    height: 50px;*/
+    height: 63px;
+    min-width: 97px;
+/*	min-width: 100px;*/
     color: white;
     position: relative;
 }
@@ -149,13 +152,17 @@ h1{
     background-color: #d4145a;
     color: #f5a8f0;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 56px;
+    height: 56px;
     margin: auto;
     margin-top: 6.5%;
-    box-shadow:2px -1px 2px #888888;
+    box-shadow:2px 2px 9px #888888;
     font-weight: 800;
     font-size: 49px;
+}
+.picture{
+    width:50px;
+    height:50px;
 }
 .new-comment{
     display: -webkit-flex;
@@ -164,9 +171,12 @@ h1{
     display: -o-flex;
     display: flex;
     justify-content: space-between;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
     flex: 0 0 auto;
     background-color: #e6e6e6;
+}
+#newComment{
+    border: 1px solid #d9d9d9;
 }
 .block{
     overflow:hidden;
@@ -226,8 +236,8 @@ h1{
 .input-comment{
     font: 16px Arial;
     padding-left: 6px;
-    padding-top: 11px;
-    padding-bottom: 9px;
+    padding-top: 13px;
+    padding-bottom: 10px;
     margin-left: 10px;
     width: 100%;
 }
@@ -276,10 +286,8 @@ a{
   transition: transform 0.3s;  
   transform-style: preserve-3d;  
   pointer-events: none;
-/*  box-shadow: 0px 0px 4px #C7C7C7;*/
 }
 .flipBtnWrapper:hover >  .flipBtn{
-/*   box-shadow: 0px 0px 4px #828282;*/
 }
 .flipBtn_back{  
   transform:  translateZ( -10px );
@@ -291,20 +299,22 @@ a{
 .flipBtn_back, .flipBtn_front{
   background-repeat: no-repeat;
   background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .flipBtn_checkbox{
   opacity: 0;
   cursor: pointer;
 }
 
-/* Demo No 1 */
+
 
 .flipBtn_front.demo1{
-/*	background-image: url("image/css-3d-flip-button-animation-play.png"), linear-gradient(#FF6366 50%, #FEA56E);*/
     background-color: #d4145a;
 }
 .flipBtn_back.demo1{
-/*	background-image:  url("image/css-3d-flip-button-animation-pause.png"), linear-gradient(#FF6366 50%, #FEA56E);*/
+
     background-color: #313464;
     transform: scaleY(-1);
 }
@@ -317,6 +327,7 @@ a{
 .flipBtn_checkbox:checked + .flipBtn.demo1{
   transform: rotateX( -180deg );
 }
+/*
 .text{
   transform: scaleY(-1);
-    }
+    }*/
