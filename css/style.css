@@ -119,8 +119,9 @@ h1 {
     padding-left: 13px;
 }
 .new-topic__input-wrapper {
-    width: 80%;
-    padding-top: 3.6%;
+    padding-top: 12px;
+    padding-left: 18px;
+    flex: 1;
 }
 .new-topic__input {
     font: 17px Arial;
@@ -129,14 +130,12 @@ h1 {
     border: 0;
     outline: 0;
     background: transparent;
-    border-bottom: 1px solid #2b2f3e;
-    width: 94%;
-    margin-left: 18px;
+    border-bottom: 1px solid #2b2f3e;    
     padding-top: 12px;
+    width: 100%;
 }
 .new-topic {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 .home-add-new-topic {
@@ -162,6 +161,8 @@ h1 {
 }
 .new-topic__btn_add {
     margin-top: 24px;
+    margin-left: 14px;
+    flex: 0;
 }
 .comments-new-comment__btnAdd {
     margin-top: 12px;
