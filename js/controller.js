@@ -13,14 +13,14 @@ function isDeleteButton(elem) {
 }
 
 function sayerController($scope, $location, $timeout, sayerModel) {
-    $scope.items = sayerModel.topics;
+    $scope.topics = sayerModel.topics;
     $scope.tempTopic = [];
 
-    $scope.showAddCommentPage = function(index, id, event) {
+    $scope.showAddCommentPage = function(topic, event) {
         if (isDeleteButton(event.target))
             return;
 
-        $scope.selectedTopic = index;
+        $scope.selectedTopic = topic;
         $location.path('/comments');
         $scope.new_comment_focus = true;
     }
@@ -35,12 +35,18 @@ function sayerController($scope, $location, $timeout, sayerModel) {
         $location.path('/');
     }
 
-    $scope.addNewComment = function(id, comment) {
+    $scope.addNewComment = function(id, comment, commentId) {
         if (comment.trim().length == 0)
             return;
-
-        sayerModel.addComment(id, comment);
-        document.getElementById("newComment").value = "";
+        if(commentId==undefined){
+            sayerModel.addComment(id, comment);
+        }else{
+             sayerModel.editComment(id, comment, commentId);
+        }
+        
+//        document.getElementById("newComment").value = "";
+        $('#newComment').val("");
+        $('#newComment').focus();
     }
 
     $scope.deleteTopic = function(id, deleteNotConfirmed) {
@@ -53,6 +59,18 @@ function sayerController($scope, $location, $timeout, sayerModel) {
 
         sayerModel.deleteTopic(id);
     }
+    
+    
+    
+    $scope.deleteComment = function(topicId, commentId){
+        sayerModel.deleteComment(topicId, commentId);
+    }
+    
+    $scope.editComment = function(topicId, commentId){
+        document.getElementById("newComment").value = sayerModel.toEditComment(topicId, commentId);
+        $scope.edit_comment_id = commentId;
+        $('#newComment').focus();
+    }    
 }
 
 angular.module('sayerApp').run(function($rootScope, $timeout) {

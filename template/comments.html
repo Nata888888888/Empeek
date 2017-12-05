@@ -1,25 +1,33 @@
-  <div class="block">
-        <div class="header">
-            <a href="#/!">
-                <div class="back-page" ng-click="">
-                   &#10229;
-                </div>
-            </a>
-            <div class="selected-item">{{items[selectedTopic].title}}</div>
-        </div>
-            <div class="block-comment">
-            <div class="comments comment-text" ng-repeat="comment in items[selectedTopic].comments">
-                <div class="picture" style="background-color:{{comment.color}}"></div>
-                <div class="comment-item">{{comment.text}}</div>
+<div class="comments-block">
+    <div class="header">
+        <a href="#/!">
+            <div class="circle btn_back">
+                &#10229;
             </div>
-            </div>
-            <div class="new-comment">
-                <div class="new-comment-div">
-                    <input type="text" id="newComment" class="input-comment" placeholder="New comment goes here..." autofocus style="width:100%" ng-model="newComment">
-                </div>
-                <div class="next-page save-comment" class="input-comment" ng-click="addNewComment(items[selectedTopic].id, newComment)">
-                    &gt;
-                </div>
-            </div>
+        </a>
+        <div class="comments-header__topic">{{selectedTopic.title}}</div>
     </div>
-    
+    <div class="comments-list">
+        <div class="comments-list__comment" ng-repeat="comment in selectedTopic.comments">
+            <div class="comments-list__comment-icon" style="background-color:{{comment.color}}">
+            </div>
+            <div class="comments-list__comment-text">{{comment.text}}</div>
+            <div class="dropdown">
+                <button class="dropbtn"><i class="fa fa-pencil"></i>
+                </button>
+                <div class="dropdown-content">
+                    <div ng-click="editComment(selectedTopic.id, comment.id)">Edit</div>
+                    <div ng-click="deleteComment(selectedTopic.id, comment.id)">Delete</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="comments-new-comment">
+        <div class="comments-new-comment__wrapper">
+            <input type="text" id="newComment" class="comments-new-comment__input input" placeholder="New comment goes here..." autofocus ng-model="newComment">
+        </div>
+        <div class="circle comments-new-comment__btnAdd" ng-click="addNewComment(selectedTopic.id, newComment, edit_comment_id)">
+            &gt;
+        </div>
+    </div>
+</div>

@@ -1,20 +1,17 @@
 <div>
     <div class="header">
         <a href="#!/">
-            <div class="back-page">&#10229;
-<!--                <i class="fa fa-long-arrow-left" aria-hidden="true"></i>-->
+            <div class="circle btn_back">&#10229;
             </div>
         </a>
-        <div class="new-item">Create new item</div>
+        <div class="new-topic__header">Create new item</div>
     </div>
-    <div class="title-new">
-        <div class="title-new-item">
-            <input type="text" id="text" class="input-topic" placeholder="New item title..." style="border:0; outline: 0; background: transparent; border-bottom:1px solid #2b2f3e;" ng-model="topicTitle" autofocus>
+    <div class="new-topic">
+        <div class="new-topic__input-wrapper">
+            <input type="text" class="new-topic__input" placeholder="New item title..." ng-model="topicTitle" autofocus>
         </div>
-<!--        <a href="#!/">-->
-            <div class="next-page" ng-click="addTopic(topicTitle)">
-    <!--            <i class="fa fa-chevron-right" aria-hidden="true"></i>-->>
-<!--            </div>-->
-        </a>
+        <div class="circle new-topic__btn_add" ng-click="addTopic(topicTitle)">
+            &gt;
+        </div>
     </div>
 </div>

@@ -27,9 +27,11 @@ angular.module('sayerApp').factory('sayerModel',
                 id: "1",
                 title: 'First item with customized long title',
                 comments: [{
+                    id: "1",
                     text: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
                     color: "red"
                 }, {
+                    id: "2",
                     text: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
                     color: "green"
                 }]
@@ -41,11 +43,15 @@ angular.module('sayerApp').factory('sayerModel',
                 id: "3",
                 title: 'Third item (short one)',
                 comments: [{
+                    id: "3",
                     text: 'Lorem ipsum',
                     color: "blue"
                 }],
             });
             data.topicLastId = 3;
+            //
+            data.commentsLastId = 3;
+            //
             save();
         }
         
@@ -76,8 +82,10 @@ angular.module('sayerApp').factory('sayerModel',
         }
 
         function addComment(topicId, comment) {
+            data.commentsLastId++;
             var topic = getTopicById(topicId);
             newComment = {
+                id: data.commentsLastId,
                 text: comment,
                 color: randomColor()
             };
@@ -88,15 +96,57 @@ angular.module('sayerApp').factory('sayerModel',
         }
     
         function deleteComment(topicId, commentId) {
-            var topic = getTopicById(id);
-            // TODO
+//            var comment = getCommentById(topicId, commentId);
+            var topic = getTopicById(topicId);
+            var comment = topic.comments;
+            
+            function indexOfComment(){
+                for (var i=0; i<comment.length; i++){
+                    if(comment[i].id == commentId){
+                        return i;
+                    }
+                }
+            }
+            comment.splice(indexOfComment(), 1);
+            save();
         }
+    
+        function toEditComment(topicId, commentId) {
+            var topic = getTopicById(topicId);
+            var comment = topic.comments;
+            
+            function indexOfComment1(){
+                for (var i=0; i<comment.length; i++){
+                    if(comment[i].id == commentId){
+                        return i;
+                    }
+                }
+            }
+             return comment[indexOfComment1()].text;
+            
+        }
+        function editComment(topicId, comment, commentId){
+               var topic = getTopicById(topicId);
+            var comment1 = topic.comments;
+    
+            function indexOfComment2(){
+                for (var i=0; i<comment1.length; i++){
+                    if(comment1[i].id == commentId){
+                        return i;
+                    }
+                }
+            }
+            return comment1[indexOfComment2()].text = comment;
+        }
+        
 
         return {
             topics: data.topics,
             addTopic: addTopic,
             deleteTopic: deleteTopic,
             addComment: addComment,
-            deleteComment: deleteComment
+            deleteComment: deleteComment,
+            toEditComment: toEditComment,
+            editComment: editComment
         };
     });

@@ -1,23 +1,23 @@
 <div class="home-block">
     <div class="header">
-        <div class="header-wraper">
+        <div class="home-header">
             <h1>Sayer</h1>
             <p>World's most used time waster</p>
         </div>
     </div>
-    <div class="title" ng-repeat="item in items" ng-click="showAddCommentPage($index, item.id, $event)">
-        <div class="title-header">{{item.title}}</div>
-        <div class="count-comments" ng-hide="item.comments.length == 0">{{item.comments.length}}</div>
-        <div name="btnDeleteTopic" class="delete" ng-hide="item.comments.length != 0">
-            <input class="flipBtn_checkbox" type="checkbox" ng-model="tempTopic[item.id].deleteNotConfirmed" ng-click="deleteTopic(item.id, tempTopic[item.id].deleteNotConfirmed)" />
-            <div class="flipBtn demo1">
-                <div class="flipBtn_face flipBtn_back demo1">Confirm</div>
-                <div class="flipBtn_face flipBtn_mid demo1"></div>
-                <div class="flipBtn_face flipBtn_front demo1">Delete</div>
+    <div class="home-topic" ng-repeat="topic in topics" ng-click="showAddCommentPage(topic, $event)">
+        <div class="home-topic__title">{{topic.title}}</div>
+        <div class="circle home-topic__comments" ng-hide="topic.comments.length == 0">{{topic.comments.length}}</div>
+        <div name="btnDeleteTopic" class="home-topic__delete" ng-hide="topic.comments.length != 0">
+            <input class="flipBtn_checkbox" type="checkbox" ng-model="tempTopic[topic.id].deleteNotConfirmed" ng-click="deleteTopic(topic.id, tempTopic[topic.id].deleteNotConfirmed)" />
+            <div class="flipBtn">
+                <div class="flipBtn_face flipBtn_back">Confirm</div>
+                <div class="flipBtn_face flipBtn_mid"></div>
+                <div class="flipBtn_face flipBtn_front">Delete</div>
             </div>
         </div>
     </div>
     <a href="#!/new">
-        <div class="add-new">&#43;</div>
+        <div class="home-add-new-topic">&#43;</div>
     </a>
 </div>
