@@ -8,7 +8,7 @@
     </div>
     <div class="new-topic">
         <div class="new-topic__input-wrapper">
-            <input type="text" class="new-topic__input" placeholder="New item title..." ng-model="topicTitle" autofocus>
+            <input type="text" class="new-topic__input" placeholder="New item title..." ng-model="topicTitle" autofocus ng-keypress="onNewTopicEnter($event, topicTitle)">
         </div>
         <div class="circle new-topic__btn_add" ng-click="addTopic(topicTitle)">
             &gt;

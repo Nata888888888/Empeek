@@ -5,10 +5,10 @@ app.controller("Controller", sayerController).$inject = ["sayerModel"];
 function isDeleteButton(elem) {
     if ($(elem).attr('name') == "btnDeleteTopic")
         return true;
-    
+
     if ($(elem.parentElement).attr("name") == "btnDeleteTopic")
         return true;
-    
+
     return false;
 }
 
@@ -38,13 +38,12 @@ function sayerController($scope, $location, $timeout, sayerModel) {
     $scope.addNewComment = function(id, comment, commentId) {
         if (comment.trim().length == 0)
             return;
-        if(commentId==undefined){
+        if (commentId == undefined) {
             sayerModel.addComment(id, comment);
-        }else{
-             sayerModel.editComment(id, comment, commentId);
+        } else {
+            sayerModel.editComment(id, comment, commentId);
         }
-        
-//        document.getElementById("newComment").value = "";
+
         $('#newComment').val("");
         $('#newComment').focus();
     }
@@ -59,18 +58,37 @@ function sayerController($scope, $location, $timeout, sayerModel) {
 
         sayerModel.deleteTopic(id);
     }
-    
-    
-    
-    $scope.deleteComment = function(topicId, commentId){
+
+    $scope.deleteComment = function(topicId, commentId) {
         sayerModel.deleteComment(topicId, commentId);
     }
-    
-    $scope.editComment = function(topicId, commentId){
+
+    $scope.editComment = function(topicId, commentId) {
         document.getElementById("newComment").value = sayerModel.toEditComment(topicId, commentId);
         $scope.edit_comment_id = commentId;
         $('#newComment').focus();
-    }    
+    }
+
+    $scope.onNewCommentEnter = function(e, newComment) {
+        if (e.key != "Enter")
+            return;
+
+        $scope.addNewComment($scope.selectedTopic.id, newComment, $scope.edit_comment_id);
+        if ($scope.edit_comment_id == undefined) {
+            $(".comments-list").animate({
+                scrollTop: $(".comments-list")[0].scrollHeight
+            }, 300);
+        }
+        
+        $scope.edit_comment_id = undefined;
+    }
+    
+    $scope.onNewTopicEnter = function(e, newTopic) {
+        if (e.key != "Enter")
+            return;
+
+        $scope.addTopic(newTopic);
+    }
 }
 
 angular.module('sayerApp').run(function($rootScope, $timeout) {

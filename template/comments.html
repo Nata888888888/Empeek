@@ -24,7 +24,7 @@
     </div>
     <div class="comments-new-comment">
         <div class="comments-new-comment__wrapper">
-            <input type="text" id="newComment" class="comments-new-comment__input input" placeholder="New comment goes here..." autofocus ng-model="newComment">
+            <input type="text" id="newComment" class="comments-new-comment__input input" placeholder="New comment goes here..." autofocus ng-model="newComment" ng-keypress="onNewCommentEnter($event, newComment)">
         </div>
         <div class="circle comments-new-comment__btnAdd" ng-click="addNewComment(selectedTopic.id, newComment, edit_comment_id)">
             &gt;
