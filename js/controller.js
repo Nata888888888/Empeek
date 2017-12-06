@@ -99,4 +99,20 @@ angular.module('sayerApp').run(function($rootScope, $timeout) {
             $('[autofocus]').focus();
         });
     });
+
+    function isIeBrowser() {
+        var trident = {
+            string: navigator.userAgent.match(/Trident\/(\d+)/)
+        };
+
+        trident.version = trident.string ? parseInt(trident.string[1], 10) : null;
+
+        if (trident.string && trident.version < 9) {
+            return true;
+        }
+    }
+
+    if (isIeBrowser()) {
+        $(".warning").show();
+    }
 });
