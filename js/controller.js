@@ -35,13 +35,16 @@ function sayerController($scope, $location, $timeout, sayerModel) {
         $location.path('/');
     }
 
-    $scope.addNewComment = function(id, comment, commentId) {
-        if (comment.trim().length == 0)
+    $scope.addOrUpdateComment = function(id, commentText, commentId) {
+        if (commentText.trim().length == 0)
             return;
         if (commentId == undefined) {
-            sayerModel.addComment(id, comment);
+            sayerModel.addComment(id, commentText);
+            $(".comments-list").animate({
+                scrollTop: $(".comments-list")[0].scrollHeight
+            }, 300);
         } else {
-            sayerModel.editComment(id, comment, commentId);
+            sayerModel.updateComment(id, commentText, commentId);
         }
 
         $('#newComment').val("");
@@ -59,13 +62,13 @@ function sayerController($scope, $location, $timeout, sayerModel) {
         sayerModel.deleteTopic(id);
     }
 
-    $scope.deleteComment = function(topicId, commentId) {
-        sayerModel.deleteComment(topicId, commentId);
+    $scope.deleteComment = function(topicId, comment) {
+        sayerModel.deleteComment(topicId, comment.id);
     }
 
-    $scope.editComment = function(topicId, commentId) {
-        document.getElementById("newComment").value = sayerModel.toEditComment(topicId, commentId);
-        $scope.edit_comment_id = commentId;
+    $scope.editComment = function(topicId, comment) {
+        $scope.edit_comment_id = comment.id;
+        $('#newComment').val(comment.text);
         $('#newComment').focus();
     }
 
@@ -73,16 +76,10 @@ function sayerController($scope, $location, $timeout, sayerModel) {
         if (e.key != "Enter")
             return;
 
-        $scope.addNewComment($scope.selectedTopic.id, newComment, $scope.edit_comment_id);
-        if ($scope.edit_comment_id == undefined) {
-            $(".comments-list").animate({
-                scrollTop: $(".comments-list")[0].scrollHeight
-            }, 300);
-        }
-        
+        $scope.addOrUpdateComment($scope.selectedTopic.id, newComment, $scope.edit_comment_id);
         $scope.edit_comment_id = undefined;
     }
-    
+
     $scope.onNewTopicEnter = function(e, newTopic) {
         if (e.key != "Enter")
             return;

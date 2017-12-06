@@ -49,18 +49,16 @@ angular.module('sayerApp').factory('sayerModel',
                 }],
             });
             data.topicLastId = 3;
-            //
             data.commentsLastId = 3;
-            //
             save();
         }
-        
+
         function getTopicById(id) {
             return data.topics.find(function(topic) {
                 return topic.id == id;
             });
         }
-    
+
         function addTopic(topicTitle) {
             data.topicLastId++;
             var newTopic = {
@@ -95,50 +93,27 @@ angular.module('sayerApp').factory('sayerModel',
             return newComment;
         }
     
+        function getCommentById(topic, commentId) {
+            return topic.comments.find(function(comment) {
+                return comment.id == commentId;
+            });
+        }
+
         function deleteComment(topicId, commentId) {
-//            var comment = getCommentById(topicId, commentId);
             var topic = getTopicById(topicId);
-            var comment = topic.comments;
-            
-            function indexOfComment(){
-                for (var i=0; i<comment.length; i++){
-                    if(comment[i].id == commentId){
-                        return i;
-                    }
-                }
-            }
-            comment.splice(indexOfComment(), 1);
+            var comment = getCommentById(topic, commentId);
+            var commentIndex = topic.comments.indexOf(comment);
+            topic.comments.splice(commentIndex, 1);
             save();
         }
-    
-        function toEditComment(topicId, commentId) {
+
+        function updateComment(topicId, commentText, commentId) {
             var topic = getTopicById(topicId);
-            var comment = topic.comments;
-            
-            function indexOfComment1(){
-                for (var i=0; i<comment.length; i++){
-                    if(comment[i].id == commentId){
-                        return i;
-                    }
-                }
-            }
-             return comment[indexOfComment1()].text;
-            
+            var comment = getCommentById(topic, commentId);
+            comment.text = commentText;
+            save();
+            return comment;
         }
-        function editComment(topicId, comment, commentId){
-               var topic = getTopicById(topicId);
-            var comment1 = topic.comments;
-    
-            function indexOfComment2(){
-                for (var i=0; i<comment1.length; i++){
-                    if(comment1[i].id == commentId){
-                        return i;
-                    }
-                }
-            }
-            return comment1[indexOfComment2()].text = comment;
-        }
-        
 
         return {
             topics: data.topics,
@@ -146,7 +121,6 @@ angular.module('sayerApp').factory('sayerModel',
             deleteTopic: deleteTopic,
             addComment: addComment,
             deleteComment: deleteComment,
-            toEditComment: toEditComment,
-            editComment: editComment
+            updateComment: updateComment
         };
     });

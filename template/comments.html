@@ -16,8 +16,8 @@
                 <button class="dropbtn"><i class="fa fa-pencil"></i>
                 </button>
                 <div class="dropdown-content">
-                    <div ng-click="editComment(selectedTopic.id, comment.id)">Edit</div>
-                    <div ng-click="deleteComment(selectedTopic.id, comment.id)">Delete</div>
+                    <div ng-click="editComment(selectedTopic.id, comment)">Edit</div>
+                    <div ng-click="deleteComment(selectedTopic.id, comment)">Delete</div>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
         <div class="comments-new-comment__wrapper">
             <input type="text" id="newComment" class="comments-new-comment__input input" placeholder="New comment goes here..." autofocus ng-model="newComment" ng-keypress="onNewCommentEnter($event, newComment)">
         </div>
-        <div class="circle comments-new-comment__btnAdd" ng-click="addNewComment(selectedTopic.id, newComment, edit_comment_id)">
+        <div class="circle comments-new-comment__btnAdd" ng-click="addOrUpdateComment(selectedTopic.id, newComment, edit_comment_id)">
             &gt;
         </div>
     </div>
