@@ -58,6 +58,14 @@ h1 {
     font-size: 11px;
     margin-left: 16px;
 }
+.hint {
+    position: absolute;
+    font-size: 18px;
+    color: white;
+    max-width: 150px;
+    margin-left: 50px;
+    margin-top: 50px;
+}
 .header {
     background-color: #0e1d3c;
     color: white;
@@ -336,5 +344,8 @@ h1 {
     .view-wrapper {
         max-width: 100%;
         margin: 0;
+    }
+    .hint {
+        display: none;
     }
 }
